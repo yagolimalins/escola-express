@@ -1,5 +1,6 @@
 import express from "express"
 import alunos from "./alunosRoutes.js"
+import cors from "cors"
 
 const routes = (app) => {
     app.route('/')
@@ -9,6 +10,8 @@ const routes = (app) => {
     
     app.use(
         express.json(),
+        cors(),
+        express.static('public'),
         alunos
     )
 }

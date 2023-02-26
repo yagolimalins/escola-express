@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, intial-scale=1.0">
+        <title> Cadastrar Aluno</title>
+        <style>
+            body {
+                background-color: slategray;
+            }
+
+            input {
+                font-size: 25px;
+                padding: 12px, 20px;
+                margin: 8px;
+                box-sizing: border-box;
+                display: inline-block;
+            }
+
+            button {
+                font-size: 25px;
+                padding: 12px, 20px;
+                margin: 8px;
+                box-sizing: border-box;
+                display: inline-block;
+            }
+        </style>
+    </head>
+    <body>
+
+        <form class="form">
+            <input name="nome" type="text" placeholder="Nome">
+            <input name="nascimento" type="text" placeholder="Nascimento">
+            <input name="cpf" type="text" placeholder="CPF">
+            <input name="rg" type="text" placeholder="RG">
+            <input name="endereco" type="text" placeholder="Endereco">
+            <input name="bairro" type="text" placeholder="Bairro">
+            <input name="cidade" type="text" placeholder="Cidade">
+            <input name="uf" type="text" placeholder="UF">
+            <input name="cep" type="text" placeholder="CEP">
+            <input name="telefone" type="text" placeholder="Telefone">
+            <input name="email" type="text" placeholder="E-Mail">
+            <br>
+            <button type="submit">Cadastrar</button>
+
+            <script>
+                const formEl = document.querySelector('.form');
+                formEl.addEventListener('submit', event => {
+                    event.preventDefault();
+                    const formData = new FormData(formEl);
+                    const data = Object.fromEntries(formData)
+                    
+                    fetch('http://localhost:3000/alunos', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    });
+                });
+            </script>
+        </form>
+    </body>
+</html>
